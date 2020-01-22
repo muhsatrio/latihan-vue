@@ -1,12 +1,21 @@
 <template>
-  <div id="app">
-    <Home />
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <User />
+      </div>
+    </div>
+  </div> 
 </template>
 
 <script>
+import User from './components/User';
+export default {
+    components: {
+      User
+    }
+}
+
 // import Home from './components/Home';
 // export default {
 //   components: {
@@ -24,12 +33,8 @@
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+div.component {
+        border: 1px solid black;
+        padding: 30px;
 }
 </style>
