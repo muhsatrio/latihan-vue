@@ -2,24 +2,29 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <User />
+        <Quote>
+          <h2 slot="title">{{ quoteTittle }}</h2>
+          <p slot="content">Kalau bisa besok kenapa harus hari ini?!</p>
+        </Quote>
       </div>
     </div>
   </div> 
 </template>
 
 <script>
-import User from './components/User';
+import Quote from './components/Quote'
 export default {
-    components: {
-      User
+  data() {
+    return {
+      quoteTittle :'The Quote'
     }
+  },
+  components: {
+    Quote
+  }
 }
 </script>
 
 <style>
-div.component {
-        border: 1px solid black;
-        padding: 30px;
-}
+
 </style>
