@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: ['quote']
+  props: ['quote'],
 }
 </script>
 
