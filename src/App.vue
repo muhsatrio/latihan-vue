@@ -4,7 +4,7 @@
       <div class="col-xs-12">
         <Quote>
           <h2 slot="title">{{ quoteTittle }}</h2>
-          <p slot="content">Kalau bisa besok kenapa harus hari ini?!</p>
+          <p>A wonderful Quote!</p>
         </Quote>
       </div>
     </div>

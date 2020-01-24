@@ -4,7 +4,9 @@
       <slot name="title"></slot>
     </div>
     <div class="content">
-      <slot name="content"></slot>
+      <span style="color: #ccc">
+        <slot name="content">The Subtitle</slot>
+      </span>
     </div>
     <slot></slot>
   </div>
