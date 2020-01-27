@@ -1,32 +1,26 @@
 <template>
-  <div id="quote">
-    <div class="title">
-      <slot name="title"></slot>
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-body quote">
+        <slot></slot>
+      </div>
     </div>
-    <div class="content">
-      <span style="color: #ccc">
-        <slot name="content">The Subtitle</slot>
-      </span>
-    </div>
-    <slot></slot>
   </div>
 </template>
 
 <script>
-export default {
-  props: ['quote']
-}
 </script>
 
-<style scoped>
-  div#quote {
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 2px black;
-    padding: 30px;
-    margin: 30px auto;
-    text-align: center; 
+<style>
+  .panel-body {
+    font-family: 'Arizonia', cursive;
+    font-size: 24px;
+    color: #6e6e6e;
   }
-  h2 {
-    color: red;
+  .quote {
+    cursor: pointer;
+  }
+  .quote:hover {
+    background-color: #ffe2e2;
   }
 </style>
