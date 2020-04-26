@@ -2,60 +2,54 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1>Routing</h1>
+                <h1>Vuex</h1>
                 <hr>
-                <Header></Header>
-                <transition name="slide">
-                    <router-view></router-view>
-                </transition>
+                <another-result></another-result>
+                <hr>
+                <!-- <app-counter></app-counter> -->
+                <!-- <hr> -->
+                <another-counter></another-counter>
+                <hr>
+                <input type="text" v-model="value" >
+                <p>{{ value }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Header from "./components/Header";
+    // import Counter from './components/Counter.vue';
+    // import Result from './components/Result.vue';
+    import AnotherResult from './components/AnotherResult.vue';
+    import AnotherCounter from './components/AnotherCounter.vue';
     export default {
+        data() {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            updateValue(event) {
+                this.$store.dispatch('updateValue', event.target.value);
+            }
+        },
+        computed: {
+            value: {
+                get() {
+                    return this.$store.getters.value;
+                },
+                set(value) {
+                    this.$store.dispatch('updateValue', value);
+                }
+                // return this.$store.getters.value;
+            },
+        },
         components: {
-            Header
+            // appCounter: Counter,
+            // appResult: Result,
+            AnotherResult: AnotherResult,
+            AnotherCounter: AnotherCounter,
         }
     }
 </script>
 
-<style>
-    .slide-enter {
-        opacity: 0;
-        /* transform: translateY((20px); */
-    }
-    .slide-enter-active {
-        animation: slide-in 1s ease-out forwards;
-        transition: opacity .5s;
-    }
-    /* .slide-leave {
-    } */
-    .slide-leave-active {
-        animation: slide-out 1s ease-out forwards;
-        transition: opacity 1s;
-        opacity: 0;
-        position: absolute;
-    }
-    .slide-move {
-        transition: transform 1s;
-    }
-    @keyframes slide-in {
-        from {
-            transform: translateY(30px);
-        }
-        to {
-            transform: translateY(0);
-        }
-    }
-    @keyframes slide-out {
-        from {
-            transform: translateY(0);
-        }
-        to {
-            transform: translateY(30px);
-        }
-    }
-</style>
