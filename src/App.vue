@@ -2,109 +2,60 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1>Http</h1>
-                <div class="form-grou">
-                    <label for="">Username</label>
-                    <input type="text" class="form-control" v-model="user.username">
-                </div>
-                <div class="form-grou">
-                    <label for="">Mail Address</label>
-                    <input type="text" class="form-control" v-model="user.email">
-                </div>
+                <h1>Routing</h1>
                 <hr>
-                <input type="text" class="form-control" v-model="node">
-                <br><br>
-                <button @click="submit" class="btn btn-primary">Submit</button>
-                <br><br>
-                <button class="btn btn-primary" @click="fetchData">Get Data</button>
-                <div class="list-group">
-                    <li :key="i" class="list-group-item" v-for="(u, i) in users">{{ u.username }} - {{ u.email }}</li>
-                </div>
+                <Header></Header>
+                <transition name="slide">
+                    <router-view></router-view>
+                </transition>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Header from "./components/Header";
     export default {
-        data() {
-            return {
-                user: {
-                    username: '',
-                    email: ''
-                },
-                users: [],
-                resource: {},
-                node: 'data'
-            }
-        },
-        methods: {
-            submit() {
-                // // eslint-disable-next-line no-console
-                // console.log(this.user);
-                // this.$http.post('data.json', this.user)
-                //     .then(response => {
-                //         // eslint-disable-next-line no-console
-                //         console.log(response);
-                //     }, error => {
-                //         // eslint-disable-next-line no-console
-                //         console.log(error);
-                //     })
-                // this.resource.save({}, this.user);
-                this.resource.saveAlt(this.user);
-            },
-            fetchData() {
-                // this.$http.get('data.json')
-                //     .then(response => {
-                //         return response.json();
-                //     })
-                //     .then(response => {
-                //         // eslint-disable-next-line no-console
-                //         console.log(response);
-                //         let resultArray = [];
-                //         for (let i in response) {
-                //             resultArray = [...resultArray, response[i]];
-                //         }
-                //         // eslint-disable-next-line no-console
-                //         console.log(resultArray);
-                //         this.users = resultArray;
-                //     }, error => {
-                //         // eslint-disable-next-line no-console
-                //         console.log(error);
-                //     })
-                this.resource.getData({
-                    node: this.node
-                })
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(response => {
-                        // eslint-disable-next-line no-console
-                        console.log(response);
-                        let resultArray = [];
-                        for (let i in response) {
-                            resultArray = [...resultArray, response[i]];
-                        }
-                        // eslint-disable-next-line no-console
-                        console.log(resultArray);
-                        this.users = resultArray;
-                    });
-            }
-        },
-        created() {
-            const customActions = {
-                saveAlt: {
-                    method: 'POST',
-                    url: 'alternative.json'
-                },
-                getData: {
-                    method: 'GET'
-                }
-            };
-            this.resource = this.$resource('{node}.json', {}, customActions);
-        },
+        components: {
+            Header
+        }
     }
 </script>
 
 <style>
+    .slide-enter {
+        opacity: 0;
+        /* transform: translateY((20px); */
+    }
+    .slide-enter-active {
+        animation: slide-in 1s ease-out forwards;
+        transition: opacity .5s;
+    }
+    /* .slide-leave {
+    } */
+    .slide-leave-active {
+        animation: slide-out 1s ease-out forwards;
+        transition: opacity 1s;
+        opacity: 0;
+        position: absolute;
+    }
+    .slide-move {
+        transition: transform 1s;
+    }
+    @keyframes slide-in {
+        from {
+            transform: translateY(30px);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+    @keyframes slide-out {
+        from {
+            transform: translateY(0);
+        }
+        to {
+            transform: translateY(30px);
+        }
+    }
 </style>

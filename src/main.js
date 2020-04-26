@@ -1,27 +1,31 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
+import {routes} from './routes';
 
-Vue.use(VueResource);
+Vue.use(VueRouter);
 
-Vue.http.options.root = "https://latihan-921e1.firebaseio.com"; 
-Vue.http.interceptors.push((request, next) => {
-  // eslint-disable-next-line no-console
-  console.log(request);
-  if (request.method === 'POST') {
-    request.method = 'PUT';
-  }
-  // next();
-  next(response => {
-    response.json = () => {
+const router = new VueRouter({
+  routes: routes,
+  mode: 'history',
+  scrollBehavior (to) {
+    if (to.hash) {
       return {
-        messages: response.body
+        selector: to.hash
       }
     }
-  });
+  }
 });
+
+router.beforeEach((to, from, next) => {
+  // eslint-disable-next-line no-console
+  console.log('global beforeEach');
+  next();
+  // to and from are both route objects. must call `next`.
+})
 
 new Vue({
   el: '#app',
+  router,
   render: h => h(App)
 })
