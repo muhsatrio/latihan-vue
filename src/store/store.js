@@ -6,27 +6,27 @@ import value from './modules/value';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-    state: {
+    // state: {
         // counter: 0,
         
-    },
-    getters: {
+    // },
+    // getters: {
         // doubleCounter: state => {
         //     return state.counter * 2;
         // },
         // stringCounter: state => {
         //     return state.counter + ' Clicks'
         // },
-    },
-    mutations: {
+    // },
+    // mutations: {
         // increment: (state, payload) => {
         //     state.counter+=payload;
         // },
         // decrement: (state, payload) => {
         //     state.counter-=payload;
         // },
-    },
-    actions: {
+    // },
+    // actions: {
         // increment: (context, payload) => {
         //     context.commit('increment', payload);
         // },
@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
         //        context.commit('decrement', payload.by); 
         //     }, payload.duration);
         // },
-    },
+    // },
     modules: {
         counter,
         value
