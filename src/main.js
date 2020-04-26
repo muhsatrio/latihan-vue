@@ -1,14 +1,27 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Home from './components/Home.vue';
+import VueResource from 'vue-resource';
 
-Vue.component('Home', Home);
-Vue.config.productionTip = false
+Vue.use(VueResource);
+
+Vue.http.options.root = "https://latihan-921e1.firebaseio.com"; 
+Vue.http.interceptors.push((request, next) => {
+  // eslint-disable-next-line no-console
+  console.log(request);
+  if (request.method === 'POST') {
+    request.method = 'PUT';
+  }
+  // next();
+  next(response => {
+    response.json = () => {
+      return {
+        messages: response.body
+      }
+    }
+  });
+});
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app');
-// new Vue({
-//   el: '#app',
-//   render: h => h(App),
-// });
+  el: '#app',
+  render: h => h(App)
+})
